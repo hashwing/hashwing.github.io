@@ -20,7 +20,7 @@ mysql> update user set password=PASSWORD('123456') where user='root';
 
 ```
 
-* 检查root配置
+* 检查root配置(可选)
 
 ```
 
@@ -35,17 +35,23 @@ mysql> select host,user from user where user='root';
 修改root配置 
 
 ```
+
+* 修改ip
+
+```
 mysql> update user set host = '%' where user = 'root' and host='127.0.0.1';
 
 ```
 
 * 给用户授权
+
 ```
 mysql> grant all privileges on *.* to 'root'@'%' identified by '123456' with grant option;
 
 ```
 
-*使配置生效
+* 使配置生效
+
 ```
 mysql> flush privileges;
 
