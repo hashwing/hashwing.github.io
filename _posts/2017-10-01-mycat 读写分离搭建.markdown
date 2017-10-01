@@ -1,0 +1,103 @@
+---
+layout: post
+title:  "mycat 基于mariadb 搭建主从切换，读写分离"
+date:   2017-09-30 09:05:14 +0000
+categories: hashwing update
+---
+
+## 搭建环境
+```
+  主机1：192.168.164.130  centos7  mycat
+  主机2：192.168.164.131  centos7  mariadb
+  主机2：192.168.164.132  centos7  mariadb
+
+```
+
+## mariadb 安装
+```
+yum install -y mysql mysql-server 
+
+systemctl start mariadb  //启动
+
+systemctl enable mariadb //开机自启
+
+mysqladmin -u root password 123456 //设置root密码
+
+```
+
+## mariadb 主从复制
+
+  详见
+
+## Java 环境安装 (jdk 1.7以上)
+
+```
+yum install -y java
+
+```
+
+
+## mycat 安装
+
+```
+
+wget http://dl.mycat.io/1.6-RELEASE/Mycat-server-1.6-RELEASE-20161028204710-linux.tar.gz
+
+tar -zxvf Mycat-server-1.6-RELEASE-20161028204710-linux.tar.gz
+
+mv mycat /usr/local/
+
+
+```
+
+## mycat配置
+
+```
+cd /usr/local/mycat/conf
+
+```
+
+```
+vi schema.xml
+
+       <schema name="db1" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn1">
+       </schema>       
+       <schema name="db2" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn2">
+       </schema>
+       <schema name="db3" checkSQLschema="false" sqlMaxLimit="100" dataNode="dn3">
+       </schema>
+        <dataNode name="dn1" dataHost="mysql1" database="db1" />
+        <dataNode name="dn2" dataHost="mysql1" database="db2" />
+        <dataNode name="dn3" dataHost="mysql1" database="db3" />
+
+        <dataHost name="mysql1" maxCon="1000" minCon="10" balance="1"
+                writeType="0" dbType="mysql" dbDriver="native" switchType="2"  slaveThreshold="100">
+                <heartbeat>show slave status</heartbeat>
+                <writeHost host="mysql1" url="192.168.164.131:3306" user="root" password="oracle">
+                </writeHost>
+                <writeHost host="mysql2" url="192.168.164.132:3306" user="root" password="oracle">
+                </writeHost>
+        </dataHost>
+
+
+```
+
+
+```
+vi server.xml
+
+<user name="root">
+                <property name="password">123456</property>
+                <property name="schemas">db1,db2,db3</property>
+</user>
+
+```
+
+## mycat启动
+
+```
+mycat strat
+
+```
+
+`启动出现超时，可以修改wrapper.conf wrapper.ping.outtime 为更长时间`
