@@ -1,11 +1,11 @@
 ---
-layout: post
+layout: Database
 title:  "mycat 基于mariadb 搭建主从切换，读写分离"
 date:   2017-09-30 09:05:14 +0000
 categories: hashwing update
 ---
 
-## 搭建环境
+* 搭建环境
 ```
   主机1：192.168.164.130  centos7  mycat
   主机2：192.168.164.131  centos7  mariadb
@@ -13,7 +13,7 @@ categories: hashwing update
 
 ```
 
-## mariadb 安装
+* mariadb 安装
 ```
 yum install -y mysql mysql-server 
 
@@ -25,11 +25,11 @@ mysqladmin -u root password 123456 //设置root密码
 
 ```
 
-## mariadb 主从复制
+* mariadb 主从复制
 
   详见
 
-## Java 环境安装 (jdk 1.7以上)
+* Java 环境安装 (jdk 1.7以上)
 
 ```
 yum install -y java
@@ -37,7 +37,7 @@ yum install -y java
 ```
 
 
-## mycat 安装
+* mycat 安装
 
 ```
 
@@ -50,7 +50,7 @@ mv mycat /usr/local/
 
 ```
 
-## mycat配置
+* mycat配置
 
 ```
 cd /usr/local/mycat/conf
@@ -93,7 +93,7 @@ vi server.xml
 
 ```
 
-## mycat启动
+* mycat启动
 
 ```
 mycat strat
