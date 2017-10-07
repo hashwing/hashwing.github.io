@@ -1,0 +1,43 @@
+---
+layout: post
+title:  "mycat-web 安装"
+date:   2017-10-01 11:05:14 +0000
+categories: hashwing update
+---
+
+* zookeeper 安装
+
+```
+wget  http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz 
+
+tar -xzvf  zookeeper-3.4.6.tar.gz 
+
+cp zoo_sample.cfg zoo.cfg 
+
+cd zookeeper-3.4.6/conf
+
+cp zoo_sample.cfg zoo.cfg
+
+cd ../bin
+
+ ./zkServer.sh start 
+
+```
+
+* 安装MyCAT-WEB 
+
+```
+wget http://dl.mycat.io/mycat-web-1.0/Mycat-web-1.0-SNAPSHOT-20170102153329-linux.tar.gz
+
+tar -zxvf Mycat-web-1.0-SNAPSHOT-20170102153329-linux.tar.gz
+
+cd mycat-web/mycat-web/WEB-INF/classes 
+
+vim mycat.properties
+	zookeeper=127.0.0.1:2181 
+
+cd ../../..
+
+./start.sh
+
+```
