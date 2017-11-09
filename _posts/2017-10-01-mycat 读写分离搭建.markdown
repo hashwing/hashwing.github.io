@@ -17,7 +17,7 @@ categories: hashwing update
 * mariadb 安装
 
 ```
-yum install -y mysql mysql-server 
+yum install -y mariadb mariadb-server 
 
 systemctl start mariadb  //启动
 

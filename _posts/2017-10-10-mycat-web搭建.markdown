@@ -8,7 +8,7 @@ categories: hashwing update
 * zookeeper 安装
 
 ```
-wget  http://mirrors.hust.edu.cn/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz 
+wget http://mirrors.shuosc.org/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
 
 tar -xzvf  zookeeper-3.4.6.tar.gz 
 
