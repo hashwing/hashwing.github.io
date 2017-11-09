@@ -1,4 +1,4 @@
-```
+```go
  	GET         1000 /* Get status */
  	SET         1001 /* Set status (enable/disable/auditd) */
  	LIST        1002 /* List syscall rules -- deprecated */
