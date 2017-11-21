@@ -1,0 +1,32 @@
+
+
+### docker 安装
+```
+yum install -y docker
+
+```
+
+### 开通阿里镜像源并配置
+
+```
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://d6v898gg.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+
+```
+
+
+### docker 命令
+
+```
+docker pull centos:latest
+
+
+
+```
+
